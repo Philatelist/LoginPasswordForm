@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,33 +15,37 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_password);
 
 
-        final View.OnClickListener buttonLogin = new IfValidUser(this);
+        final View.OnClickListener buttonLoginCorrect = new IfValidUser(this);
+        final View.OnClickListener buttonLoginIncorrect = new IfInvalidUser(this);
 
         final Button login = (Button) findViewById(R.id.buttonLogin);
 //        Button register = (Button) findViewById(R.id.buttonRegister);
 //        Button remind = (Button) findViewById(R.id.buttonRemindPassword);
 
-        EditText emailView = (EditText) findViewById(R.id.editTextEmail);
-        EditText passwView = (EditText) findViewById(R.id.editTextPassword);
-
-        final String emailText = emailView.getText().toString();
-        final String passwText = passwView.getText().toString();
-
-
         final User admin = new User("admin", "admin");
+        Toast.makeText(MainActivity.this, admin.toString(), Toast.LENGTH_LONG).show();
 
-        emailView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        emailView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (admin.isValideUser(emailText) && admin.isValidPassword(passwText)) {
-                    login.setOnClickListener(buttonLogin);
+                EditText emailView = (EditText) findViewById(R.id.editTextEmail);
+                EditText passwView = (EditText) findViewById(R.id.editTextPassword);
+
+                User newUser = new User(emailView.getText().toString(), passwView.getText().toString());
+
+//                Toast.makeText(MainActivity.this, newUser.toString(), Toast.LENGTH_LONG).show();
+
+                if (newUser.isValideUser(admin.getName()) && newUser.isValidPassword(admin.getPassword())) {
+                    login.setOnClickListener(buttonLoginCorrect);
+                } else {
+                    login.setOnClickListener(buttonLoginIncorrect);
                 }
             }
         });

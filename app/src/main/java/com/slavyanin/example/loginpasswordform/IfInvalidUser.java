@@ -7,17 +7,17 @@ import android.widget.Toast;
 /**
  * Created by slavyanin on 03.03.16.
  */
-public class IfValidUser implements View.OnClickListener {
+public class IfInvalidUser implements View.OnClickListener {
 
     private Context context;
 
-    public IfValidUser(Context context) {
+    public IfInvalidUser(Context context) {
         this.context = context;
     }
 
     @Override
     public void onClick(View v) {
-        String toastText = " LOGIN and PASSWORD correct! ";
+        String toastText = " ERROR. " + "\n" + " LOGIN and PASSWORD incorrect! ";
         Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
     }
 }
