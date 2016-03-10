@@ -16,23 +16,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button getTo = (Button) findViewById(R.id.gettoanother);
-        final Button share = (Button) findViewById(R.id.share);
+        final Button getToActivity = (Button) findViewById(R.id.gettoanother);
+        final Button shareInfo = (Button) findViewById(R.id.share);
         Button checkWifi = (Button) findViewById(R.id.checkwifi);
         Button openBrowser = (Button) findViewById(R.id.openbrowser);
 
-
-        getTo.setOnClickListener(new View.OnClickListener() {
+        getToActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context activity = null;
-                Intent intent = new Intent(activity, LoginPasswordActivity.class);
+                Intent intent = new Intent(MainActivity.this, LoginPasswordActivity.class);
 
                 startActivity(intent);
             }
         });
 
-        share.setOnClickListener(new View.OnClickListener() {
+        shareInfo.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
